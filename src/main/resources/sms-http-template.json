@@ -1,0 +1,18 @@
+{
+ "outgoing" : {
+    "request":{
+        "urlPath": "http://23.21.156.138:2812/Receiver",
+        "queryParameters":{
+            "username": "gr1m2",
+            "password": "G1R2M3",
+            "to": "$recipients" ,
+            "text": "$message",
+            "from": "7005"
+        },
+        "recipientsSeparator": "+"
+    },
+    "response": {
+        "success": "Received"
+    }
+ }
+}

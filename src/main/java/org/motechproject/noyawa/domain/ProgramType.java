@@ -1,0 +1,114 @@
+package org.motechproject.noyawa.domain;
+
+import org.apache.commons.lang.math.IntRange;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.ektorp.support.TypeDiscriminator;
+import org.motechproject.noyawa.exception.InvalidMonthException;
+import org.motechproject.model.MotechBaseDataObject;
+
+import java.util.List;
+
+@TypeDiscriminator("doc.type === 'ProgramType'")
+public class ProgramType extends MotechBaseDataObject {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@JsonIgnore
+    public static final String RONALD = "RONALD";
+    @JsonIgnore
+    public static final String KIKI = "KIKI";
+    @JsonIgnore
+    public static final String RITA = "RITA";
+
+    @JsonProperty("type")
+    private String type = "ProgramType";
+    private Integer minWeek;
+    private Integer maxWeek;
+    private String programName;
+    private ProgramType rollOverProgramType;
+    private String programKey;
+    private List<String> shortCodes;
+
+    public static final int TOTAL_WEEKS_FOR_REPRODUCTIVECARE_CARE = 52;
+    public static final int TOTAL_MONTHS = 12;
+
+    public ProgramType() {
+    }
+
+    public boolean isInRange(Integer startFrom) {
+        IntRange weekRange = new IntRange(minWeek, maxWeek);
+        return weekRange.containsInteger(startFrom);
+    }
+
+    public String getProgramName() {
+        return programName;
+    }
+
+    public List<String> getShortCodes() {
+        return shortCodes;
+    }
+
+    public ProgramType setShortCodes(List<String> shortCodes) {
+        this.shortCodes = shortCodes;
+        return this;
+    }
+
+    public ProgramType setProgramName(String programName) {
+        this.programName = programName;
+        return this;
+    }
+
+    public Integer getMinWeek() {
+        return minWeek;
+    }
+
+    public void setMinWeek(Integer minWeek) {
+        this.minWeek = minWeek;
+    }
+
+    public Integer getMaxWeek() {
+        return maxWeek;
+    }
+
+    public void setMaxWeek(Integer maxWeek) {
+        this.maxWeek = maxWeek;
+    }
+
+    public String getProgramKey() {
+        return programKey;
+    }
+
+    public ProgramType setProgramKey(String programKey) {
+        this.programKey = programKey;
+        return this;
+    }
+
+    public Boolean canRollOff() {
+        return rollOverProgramType != null;
+    }
+
+    public ProgramType getRollOverProgramType() {
+        return rollOverProgramType;
+    }
+
+    public void setRollOverProgramType(ProgramType rollOverProgramType) {
+        this.rollOverProgramType = rollOverProgramType;
+    }
+
+     public Integer weekFor(int weekNumber) throws InvalidMonthException {
+        if (programKey.equals(RITA))
+            return convertMonthToWeek(weekNumber);
+        return weekNumber;
+    }
+
+    private Integer convertMonthToWeek(int weekNumber) throws InvalidMonthException {
+        if (weekNumber <= 0 || weekNumber > 12)
+            throw new InvalidMonthException("Noyawa Care message invalid month value: " + weekNumber);
+
+        return weekNumber == 1 ? 1 :
+                Math.round(((weekNumber - 1) * TOTAL_WEEKS_FOR_REPRODUCTIVECARE_CARE / TOTAL_MONTHS));
+    }
+}

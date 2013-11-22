@@ -1,0 +1,84 @@
+[
+    {
+        "name" : "RONALD",
+        "type" : "REPEATING",
+        "maxDuration" : "16 Weeks",
+        "messages" : [
+            {
+                "name" : "RONALD",
+                "formats" : ["SMS"],
+                "languages" : ["en"],
+                "messageKey": "RONALD-cw{Offset}-{WeekDay}",
+                "calendarStartOfWeek" : "Sunday",
+                "weekDaysApplicable" : ["Wednesday", "Saturday"],
+                "deliverTime" : "10:30"
+            },
+            {
+                "name" : "RONALD2",
+                "formats" : ["SMS"],
+                "languages" : ["en"],
+                "messageKey": "RONALD2-cw{Offset}-{WeekDay}",
+                "calendarStartOfWeek" : "Sunday",
+                "weekDaysApplicable" : ["Wednesday"],
+                "deliverTime" : "10:30"
+            }
+
+        ]
+    },
+
+    {
+        "name" : "KIKI",
+        "type" : "REPEATING",
+        "maxDuration" : "16 Weeks",
+        "messages" : [
+            {
+                "name" : "KIKI",
+                "formats" : ["SMS"],
+                "languages" : ["en"],
+                "messageKey": "KIKI-cw{Offset}-{WeekDay}",
+                "calendarStartOfWeek" : "Sunday",
+                "weekDaysApplicable" : ["Wednesday", "Saturday"],
+                "deliverTime" : "10:30"
+            },
+
+            {
+                "name" : "KIKI2",
+                "formats" : ["SMS"],
+                "languages" : ["en"],
+                "messageKey": "KIKI2-cw{Offset}-{WeekDay}",
+                "calendarStartOfWeek" : "Sunday",
+                "weekDaysApplicable" : ["Wednesday"],
+                "deliverTime" : "10:30"
+            }
+
+        ]
+    },
+    {
+        "name" : "RITA",
+        "type" : "REPEATING",
+        "maxDuration" : "16 Weeks",
+        "messages" : [
+            {
+                "name" : "RITA",
+                "formats" : ["SMS"],
+                "languages" : ["en"],
+                "messageKey": "KIKI-cw{Offset}-{WeekDay}",
+                "calendarStartOfWeek" : "Sunday",
+                "weekDaysApplicable" : ["Wednesday", "Saturday"],
+                "deliverTime" : "10:30"
+            },
+
+            {
+                "name" : "RITA2",
+                "formats" : ["SMS"],
+                "languages" : ["en"],
+                "messageKey": "RITA2-cw{Offset}-{WeekDay}",
+                "calendarStartOfWeek" : "Sunday",
+                "weekDaysApplicable" : ["Wednesday"],
+                "deliverTime" : "10:30"
+            }
+
+        ]
+    }
+
+]
