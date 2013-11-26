@@ -17,7 +17,7 @@ public class ProgramTypeSeed extends Seed {
         ProgramType ronalProgramType = new ProgramTypeBuilder()
                 .withProgramName("Ronald Care")
                 .withShortCode("RO").withShortCode("Ro").withShortCode("ro")
-                .withMaxWeek(10).withMinWeek(1)
+                .withMaxWeek(36).withMinWeek(1)
                 .withProgramKey(ProgramType.RONALD)
                 .build();
 
@@ -26,7 +26,7 @@ public class ProgramTypeSeed extends Seed {
         ProgramType kikiProgramType = new ProgramTypeBuilder()
                 .withProgramName("Kiki Care")
                 .withShortCode("KI").withShortCode("Ki").withShortCode("ki")
-                .withMaxWeek(10).withMinWeek(1)
+                .withMaxWeek(36).withMinWeek(1)
                 .withProgramKey(ProgramType.KIKI)
                 .build();
         
@@ -36,7 +36,7 @@ public class ProgramTypeSeed extends Seed {
         ProgramType ritaProgramType = new ProgramTypeBuilder()
                 .withProgramName("Rita Care")
                 .withShortCode("RI").withShortCode("Ri").withShortCode("ri")
-                .withMaxWeek(10).withMinWeek(1)
+                .withMaxWeek(36).withMinWeek(1)
                 .withProgramKey(ProgramType.RITA)
                 .build();
         

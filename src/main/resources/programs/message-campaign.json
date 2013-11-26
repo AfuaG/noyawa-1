@@ -2,7 +2,7 @@
     {
         "name" : "RONALD",
         "type" : "REPEATING",
-        "maxDuration" : "16 Weeks",
+        "maxDuration" : "36 Weeks",
         "messages" : [
             {
                 "name" : "RONALD",
@@ -29,7 +29,7 @@
     {
         "name" : "KIKI",
         "type" : "REPEATING",
-        "maxDuration" : "16 Weeks",
+        "maxDuration" : "36 Weeks",
         "messages" : [
             {
                 "name" : "KIKI",
@@ -56,7 +56,7 @@
     {
         "name" : "RITA",
         "type" : "REPEATING",
-        "maxDuration" : "16 Weeks",
+        "maxDuration" : "36 Weeks",
         "messages" : [
             {
                 "name" : "RITA",
