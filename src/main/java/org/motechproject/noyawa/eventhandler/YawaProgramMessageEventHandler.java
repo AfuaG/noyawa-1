@@ -7,6 +7,8 @@ import org.motechproject.model.MotechEvent;
 import org.motechproject.server.event.annotations.MotechListener;
 import org.motechproject.server.messagecampaign.EventKeys;
 import org.motechproject.server.messagecampaign.dao.AllMessageCampaigns;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import static org.motechproject.server.messagecampaign.EventKeys.MESSAGE_CAMPAIG
 
 @Service
 public class YawaProgramMessageEventHandler {
+    private static final Logger logger = LoggerFactory.getLogger(YawaProgramMessageEventHandler.class);
     private SubscriptionService service;
     private MessengerProcess messenger;
     private AllMessageCampaigns allMessageCampaigns;
@@ -32,6 +35,8 @@ public class YawaProgramMessageEventHandler {
         Map params = event.getParameters();
         String programKey = (String) params.get(EventKeys.CAMPAIGN_NAME_KEY);
         String subscriberNumber = (String) params.get(EventKeys.EXTERNAL_ID_KEY);
+
+        logger.info(String.format("This Class Sends 'No Yawa' Outbound Messages To Client With Message  (%S) To Originator  (%S) Message ",subscriberNumber ,programKey ));
 
         Subscription subscription = service.findActiveSubscriptionFor(subscriberNumber, programKey);
         if (subscription != null) {

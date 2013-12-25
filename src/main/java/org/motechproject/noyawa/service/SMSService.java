@@ -1,5 +1,6 @@
 package org.motechproject.noyawa.service;
 
+import org.motechproject.noyawa.sms.SMSDouble;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.joda.time.DateTime;
@@ -15,11 +16,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class SMSService {
     private final static Logger log = LoggerFactory.getLogger(SMSService.class);
-    private SMSProvider smsProvider;
+   /* private SMSProvider smsProvider;
 
     @Autowired
     public SMSService(SMSProvider smsProvider) {
         this.smsProvider = smsProvider;
+    } */
+
+    private SMSDouble sMSDouble;
+
+    @Autowired
+    public SMSService (SMSDouble sMSDouble) {
+        this.sMSDouble = sMSDouble;
     }
 
     public SMSServiceResponse send(SMSServiceRequest request) {
@@ -29,7 +37,13 @@ public class SMSService {
         DateTime now = DateUtil.now();
 
         Time deliveryTime = request.getDeliveryTime();
-         smsProvider.send(mobileNumber, message, deliveryTime);
+         //smsProvider.send(mobileNumber, message, deliveryTime);
+        try{
+            sMSDouble.outingMessage(mobileNumber,message);
+        } catch (Exception e)   {
+            e.printStackTrace();
+        }
+
 
          log.info("Subscriber: " + mobileNumber + ":" + message + " : @" + now);
 
