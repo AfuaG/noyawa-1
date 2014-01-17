@@ -15,19 +15,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SMSService {
-    private final static Logger log = LoggerFactory.getLogger(SMSService.class);
-   /* private SMSProvider smsProvider;
+    private final static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SMSService.class);
+    private SMSProvider smsProvider;
 
     @Autowired
     public SMSService(SMSProvider smsProvider) {
         this.smsProvider = smsProvider;
-    } */
-
-    private SMSDouble sMSDouble;
-
-    @Autowired
-    public SMSService (SMSDouble sMSDouble) {
-        this.sMSDouble = sMSDouble;
     }
 
     public SMSServiceResponse send(SMSServiceRequest request) {
@@ -37,17 +30,9 @@ public class SMSService {
         DateTime now = DateUtil.now();
 
         Time deliveryTime = request.getDeliveryTime();
-         //smsProvider.send(mobileNumber, message, deliveryTime);
-        try{
-            sMSDouble.outingMessage(mobileNumber,message);
-        } catch (Exception e)   {
-            e.printStackTrace();
-        }
-
-
-         log.info("Subscriber: " + mobileNumber + ":" + message + " : @" + now);
+        smsProvider.send(mobileNumber, message, deliveryTime);
+        log.info("Subscriber: " + mobileNumber + ":" + message + " : @" + now);
 
         return new SMSServiceResponse();
     }
 }
-

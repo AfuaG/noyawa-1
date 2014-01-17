@@ -58,17 +58,7 @@ public class ValidationProcess extends BaseSubscriptionProcess implements ISubsc
 
     @Override
     public Boolean rollOver(Subscription fromSubscription, Subscription toSubscription) {
-        Subscription existingCareSubscription = allSubscriptions.findActiveSubscriptionFor(fromSubscription.subscriberNumber(), ProgramType.RONALD);
-        if (existingCareSubscription != null) {
-           
-            sendMessage(existingCareSubscription.subscriberNumber(), format(messageFor("Rollover not possible, program exist already"),
-                    null, null));
-
-            fromSubscription.setStatus(SubscriptionStatus.WAITING_FOR_ROLLOVER_RESPONSE);
-            allSubscriptions.update(fromSubscription);
-            return true;
-        }
-        return fromSubscription.canRollOff();
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     public Subscription validateSubscriptionToStop(String subscriberNumber, ProgramType programType) {

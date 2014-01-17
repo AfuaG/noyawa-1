@@ -10,9 +10,11 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
      
     <import resource="classpath:applicationPlatformServerAPI.xml"/>
-    <import resource="classpath:applicationSmsAPI.xml"/>
     <import resource="classpath:applicationMessageCampaign.xml"/>
-    
+    <import resource="classpath:applicationSmsAPI.xml"/>
+
+    <!-- <import resource="classpath:applicationPlatformScheduler.xml"/> -->
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:activemq.properties"/>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
@@ -23,7 +25,8 @@
     <bean id="sMSDouble" class="org.motechproject.noyawa.sms.SMSDouble" />
     <bean id="yawaAlgoSubscription" class="org.motechproject.noyawa.msgflow.YawaAlgoSubscription"/>
     <bean id="yawaDoubleConstant" class="org.motechproject.noyawa.constant.YawaDoubleConstant"/>
-   
+    <bean id="yawaLongCodeRegistration" class="org.motechproject.noyawa.msgflow.YawaLongCodeRegistration"/>
+
     <context:property-placeholder location="classpath:activemq.properties" ignore-unresolvable="true"/>
     <context:component-scan base-package="org.motechproject.noyawa"/>
     <context:component-scan base-package="org.motechproject.sms.http"/>
@@ -38,6 +41,6 @@
 
    <bean id="couchDbInstance" class="org.ektorp.impl.StdCouchDbInstance">
         <constructor-arg ref="httpClient"/>
-   </bean> 
-        
+   </bean>
+
 </beans>

@@ -99,4 +99,8 @@ public class YawaConstant {
     public String goWhatsapp = "INSERT INTO clients(phone_number,msg_week,created_at) values(?,?,?)";
 	public String getClientForSms = "SELECT client_number,client_gender,client_age,client_education_level,status FROM clients_sms_registration WHERE client_number=?";
 	public String validateClientSms ="SELECT client_number FROM clients_sms_registration WHERE client_number=?";
+
+    //Long Code Registration
+    public String getClientLongCode ="UPDATE clients_sms_registration SET client_gender=?, client_age=?, client_education_level=?, status='LongCode' WHERE client_number=?";
+
 }

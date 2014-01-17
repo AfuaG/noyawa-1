@@ -2,6 +2,8 @@ package org.motechproject.noyawa.domain;
 
 import org.motechproject.noyawa.service.SMSHandler;
 
+import java.util.Date;
+
 public abstract class SMS<T> {
 
     String message;
@@ -42,3 +44,5 @@ public abstract class SMS<T> {
         return referrer;
     }
 }
+
+

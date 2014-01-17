@@ -8,8 +8,7 @@ import org.motechproject.noyawa.domain.Subscription;
 public interface SubscriptionService {
 	
 	void start(Subscription subscription);
-    void stopExpired(Subscription subscription);    
-    void rollOver(String fromMobileNumber);
+    void stopExpired(Subscription subscription);
     void rollOverByEvent(Subscription subscription);
     void stopByUser(String fromMobileNumber, ProgramType domain);
     Subscription findActiveSubscriptionFor(String subscriberNumber, String programName);

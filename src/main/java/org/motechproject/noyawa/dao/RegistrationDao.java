@@ -61,6 +61,19 @@ public class RegistrationDao {
 		
 		checkConnection();
 	}
+
+    public void getClientLongCode(String gender, String age, String educa, String phone_number) throws Exception{
+        connection = yawaConnection.noYawaConnection();
+        preparedStatement = connection.prepareStatement(yawaConstant.getClientLongCode);
+
+        preparedStatement.setString(1, gender);
+        preparedStatement.setString(2, age);
+        preparedStatement.setString(3, educa);
+        preparedStatement.setString(4, phone_number);
+        preparedStatement.executeUpdate();
+
+        checkConnection();
+    }
 	
 	public void goWhatsapp(String phone_number, String mgsNumber, String entryDate) throws Exception{
 		connection = yawaConnection.noYawaConnection();

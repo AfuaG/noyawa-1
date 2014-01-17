@@ -31,6 +31,7 @@ public class CampaignProcess extends BaseSubscriptionProcess implements ISubscri
     public Boolean startFor(Subscription subscription) {
         campaignService.startFor(subscription.createCampaignRequest());
         sendMessage(subscription, getSuccessMessage(subscription));
+        //performScheduleAfterRegistration(subscription);
         return true;
     }
 
@@ -72,7 +73,5 @@ public class CampaignProcess extends BaseSubscriptionProcess implements ISubscri
         rollOverWaitSchedule.startScheduleWaitFor(subscription);
     }
 
-    private void unScheduleRollOverWait(Subscription subscription) {
-        rollOverWaitSchedule.stopScheduleWaitFor(subscription);
-    }
+
 }

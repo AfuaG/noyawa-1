@@ -32,6 +32,7 @@ public class YawaProgramMessageEventHandler {
 
     @MotechListener(subjects = {MESSAGE_CAMPAIGN_SEND_EVENT_SUBJECT})
     public void sendMessageReminder(MotechEvent event) {
+        logger.info(String.format("Emitting Motech Events As Scheduled........................................."));
         Map params = event.getParameters();
         String programKey = (String) params.get(EventKeys.CAMPAIGN_NAME_KEY);
         String subscriberNumber = (String) params.get(EventKeys.EXTERNAL_ID_KEY);
@@ -40,7 +41,11 @@ public class YawaProgramMessageEventHandler {
 
         Subscription subscription = service.findActiveSubscriptionFor(subscriberNumber, programKey);
         if (subscription != null) {
+            logger.info("Checking event messages flow path .........");
             messenger.process(subscription, (String) event.getParameters().get(EventKeys.GENERATED_MESSAGE_KEY));
+            logger.info("Subscription : " + subscription + " Message Key : " + (String) event.getParameters().get(EventKeys.GENERATED_MESSAGE_KEY));
+            if (event.isLastEvent())
+                service.rollOverByEvent(subscription);
         }
     }
 }

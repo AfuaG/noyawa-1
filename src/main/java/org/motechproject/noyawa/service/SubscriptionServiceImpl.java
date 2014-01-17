@@ -60,6 +60,14 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
+    public void rollOverByEvent(Subscription subscription) {
+        if (!subscription.canRollOff())
+            stopExpired(subscription);
+        else
+            performRollOver(subscription);
+    }
+
+    @Override
     public void stopByUser(String subscriberNumber, ProgramType programType) {
         Subscription subscription = validation.validateSubscriptionToStop(subscriberNumber, programType);
 
@@ -73,21 +81,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public void rollOver(String subscriberNumber) {
-        Subscription pregnancySubscription = validation.validateForRollOver(subscriberNumber);
-        if (null != pregnancySubscription)
-            performRollOver(pregnancySubscription);
-    }
-
-    @Override
-    public void rollOverByEvent(Subscription subscription) {
-        if (!subscription.canRollOff())
-            stopExpired(subscription);
-        else
-            performRollOver(subscription);
-    }
-
-    @Override
     public Subscription findActiveSubscriptionFor(String subscriberNumber, String programName) {
         return allSubscriptions.findActiveSubscriptionFor(subscriberNumber, programName);
     }
@@ -95,6 +88,15 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public List<Subscription> activeSubscriptions(String subscriberNumber) {
         return allSubscriptions.getAllActiveSubscriptionsForSubscriber(subscriberNumber);
+    }
+
+    Subscription rollOverSubscriptionFrom(Subscription subscription) {
+        return subscription != null ? new Subscription(
+                subscription.getSubscriber(),
+                subscription.rollOverProgramType(),
+                SubscriptionStatus.ACTIVE,
+                new WeekAndDay(new Week(subscription.rollOverProgramType().getMinWeek()), new DateUtils().today()),
+                DateUtil.now()).updateCycleInfo(programMessageCycle) : null;
     }
 
     private void performRollOver(Subscription subscription) {
@@ -106,13 +108,5 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         }
     }
 
-    Subscription rollOverSubscriptionFrom(Subscription subscription) {
-        return subscription != null ? new Subscription(
-                subscription.getSubscriber(),
-                subscription.rollOverProgramType(),
-                SubscriptionStatus.ACTIVE,
-                new WeekAndDay(new Week(subscription.rollOverProgramType().getMinWeek()), new DateUtils().today()),
-                DateUtil.now()).updateCycleInfo(programMessageCycle) : null;
-    }
 }
 

@@ -51,7 +51,7 @@ public class PersistenceProcess extends BaseSubscriptionProcess implements ISubs
             performRollOver(fromSubscription, toSubscription);
         } else allSubscriptions.update(fromSubscription);
         return true;
-    }    
+    }
 
     private void performRollOver(Subscription fromSubscription, Subscription toSubscription) {
         fromSubscription.setStatus(SubscriptionStatus.ROLLED_OFF);
@@ -59,5 +59,6 @@ public class PersistenceProcess extends BaseSubscriptionProcess implements ISubs
         allSubscriptions.add(toSubscription);
         allSubscriptions.update(fromSubscription);
     }
+
 }
 

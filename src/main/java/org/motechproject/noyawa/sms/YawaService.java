@@ -17,10 +17,10 @@ public class YawaService implements SMSProvider {
     SmsService smsService;    
     SMSDouble sMSDouble;
 
-   /* @Autowired
+    /* @Autowired
     public YawaService(SmsService smsService) {
         this.smsService = smsService;
-    }*/
+    } */
     
     @Autowired
     public YawaService(SMSDouble sMSDouble) {
@@ -36,7 +36,8 @@ public class YawaService implements SMSProvider {
                 deliveryDateTime = deliveryDateTime.plusDays(1);
             }
             try {
-				sMSDouble.outingMessage(mobileNumber, payload);
+				sMSDouble.outingMessage(mobileNumber, payload, deliveryDateTime);
+                logger.info("No Yawa message sent with date and time to client with this number : " + mobileNumber + " Message : " + payload);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -45,6 +46,7 @@ public class YawaService implements SMSProvider {
         } else {
         	try {
 				sMSDouble.outingMessage(mobileNumber, payload);
+                logger.info("No Yawa message sent to client with this number : " + mobileNumber + " Message : " + payload);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

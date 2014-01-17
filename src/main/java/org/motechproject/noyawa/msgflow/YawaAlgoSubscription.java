@@ -32,9 +32,10 @@ public class YawaAlgoSubscription {
 			else if(Integer.parseInt(age) >= 20 && Integer.parseInt(age) <= 24){
 				incomingYawaMessage.processIncomingYawaMessage(phone, "ri 1");			
 			}			   
-	   }						
-	  
+	   }
 	
 	}
+
+
 
 }

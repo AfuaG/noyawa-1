@@ -30,5 +30,7 @@ public class SMSHandler {
 
     public void stop(StopSMS sms) {
         service.stopByUser(sms.getFromMobileNumber(), sms.getDomain());
-    }    
+    }
+
+
 }

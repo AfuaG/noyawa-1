@@ -16,23 +16,23 @@ import static java.lang.String.format;
 import static org.motechproject.server.messagecampaign.EventKeys.EXTERNAL_ID_KEY;
 
 @Component
-public class RollOverWaitSchedule {
-    public static final String ROLLOVER_WAIT_SCHEDULE = "org.motechproject.noyawa.service.rollOverWait";
+public class YawaScheduler {
+    public static final String NO_YAWA_SCHEDULER = "org.motechproject.ghana.telco.service.yawascheduler";
     private MotechSchedulerService scheduledService;
-    private final Logger log = Logger.getLogger(RollOverWaitSchedule.class);
+    private final Logger log = Logger.getLogger(YawaScheduler.class);
 
     @Autowired
-    public RollOverWaitSchedule(MotechSchedulerService scheduledService) {
+    public YawaScheduler(MotechSchedulerService scheduledService) {
         this.scheduledService = scheduledService;
     }
 
-    public void startScheduleWaitFor(Subscription subscription) {
+    public void startScheduleFor(Subscription subscription) {
         String mobileNumber = subscription.subscriberNumber();
         String programKey = subscription.programKey();
-        Date startTime = new DateUtils().now().dayOfMonth().addToCopy(3).toDate();
+        Date startTime = new DateUtils().now().toDate();
 
         String jobId = jobId(mobileNumber);
-        MotechEvent motechEvent = new MotechEvent(ROLLOVER_WAIT_SCHEDULE, new SchedulerParamsBuilder()
+        MotechEvent motechEvent = new MotechEvent(NO_YAWA_SCHEDULER, new SchedulerParamsBuilder()
                 .withJobId(jobId)
                 .withExternalId(mobileNumber)
                 .withProgram(programKey)
@@ -40,15 +40,15 @@ public class RollOverWaitSchedule {
 
         RunOnceSchedulableJob job = new RunOnceSchedulableJob(motechEvent, startTime);
         scheduledService.scheduleRunOnceJob(job);
-        log.info("RollOverWait job scheduled for [" + mobileNumber + "|" + programKey + "|" + startTime + "]");
+        log.info("NO YAWA job scheduled for [" + mobileNumber + "|" + programKey + "|" + startTime + "]");
     }
 
     private String jobId(String mobileNumber) {
-        return format("RollOverWaitSchedule.%s", mobileNumber);
+        return format("NOYAWASchedule.%s", mobileNumber);
     }
 
     public void stopScheduleWaitFor(Subscription subscription) {
-        scheduledService.unscheduleJob(ROLLOVER_WAIT_SCHEDULE, jobId(subscription.subscriberNumber()));
+        scheduledService.unscheduleJob(NO_YAWA_SCHEDULER, jobId(subscription.subscriberNumber()));
     }
 
     private static class SchedulerParamsBuilder {

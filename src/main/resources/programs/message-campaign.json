@@ -11,7 +11,7 @@
                 "messageKey": "RONALD-cw{Offset}-{WeekDay}",
                 "calendarStartOfWeek" : "Sunday",
                 "weekDaysApplicable" : ["Wednesday", "Saturday"],
-                "deliverTime" : "10:30"
+                "deliverTime" : "07:00"
             },
             {
                 "name" : "RONALD2",
@@ -20,7 +20,7 @@
                 "messageKey": "RONALD2-cw{Offset}-{WeekDay}",
                 "calendarStartOfWeek" : "Sunday",
                 "weekDaysApplicable" : ["Wednesday"],
-                "deliverTime" : "10:30"
+                "deliverTime" : "07:00"
             }
 
         ]
@@ -38,7 +38,7 @@
                 "messageKey": "KIKI-cw{Offset}-{WeekDay}",
                 "calendarStartOfWeek" : "Sunday",
                 "weekDaysApplicable" : ["Wednesday", "Saturday"],
-                "deliverTime" : "10:30"
+                "deliverTime" : "07:05"
             },
 
             {
@@ -48,7 +48,7 @@
                 "messageKey": "KIKI2-cw{Offset}-{WeekDay}",
                 "calendarStartOfWeek" : "Sunday",
                 "weekDaysApplicable" : ["Wednesday"],
-                "deliverTime" : "10:30"
+                "deliverTime" : "07:05"
             }
 
         ]
@@ -65,7 +65,7 @@
                 "messageKey": "KIKI-cw{Offset}-{WeekDay}",
                 "calendarStartOfWeek" : "Sunday",
                 "weekDaysApplicable" : ["Wednesday", "Saturday"],
-                "deliverTime" : "10:30"
+                "deliverTime" : "07:10"
             },
 
             {
@@ -75,7 +75,7 @@
                 "messageKey": "RITA2-cw{Offset}-{WeekDay}",
                 "calendarStartOfWeek" : "Sunday",
                 "weekDaysApplicable" : ["Wednesday"],
-                "deliverTime" : "10:30"
+                "deliverTime" : "07:10"
             }
 
         ]
